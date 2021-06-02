@@ -1,7 +1,8 @@
 import plays from './plays.json';
 import invoices from './invoices.json';
+import { Invoice, Performance, Play } from './types';
 
-function statement(invoice, plays) {
+function statement(invoice: Invoice, plays: { [key: string]: Play }) {
     let totalAmount = 0;
     let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
@@ -13,25 +14,7 @@ function statement(invoice, plays) {
 
     for (let perf of invoice.performances) {
         const play = plays[perf.playID];
-        let thisAmount = 0;
-
-        switch (play.type) {
-            case 'tragedy':
-                thisAmount = 40000;
-                if (perf.audience > 30) {
-                    thisAmount += 1000 * (perf.audience - 30);
-                }
-                break;
-            case 'comedy':
-                thisAmount = 3000;
-                if (perf.audience > 20) {
-                    thisAmount += 1000 + 500 * (perf.audience - 20);
-                }
-                thisAmount += 300 * perf.audience;
-                break;
-            default:
-                throw new Error('unknown type: ${play.type}');
-        }
+        let thisAmount = amountFor(perf, play);
 
         volumeCredits += Math.max(perf.audience - 30, 0);
 
@@ -44,6 +27,28 @@ function statement(invoice, plays) {
     result += `Amount owed is ${format(totalAmount / 100)}\n`;
     result += `You earned ${volumeCredits} credits\n`;
     return result;
+
+    function amountFor(performance: Performance, play: Play) {
+        let result = 0;
+        switch (play.type) {
+            case 'tragedy':
+                result = 40000;
+                if (performance.audience > 30) {
+                    result += 1000 * (performance.audience - 30);
+                }
+                break;
+            case 'comedy':
+                result = 30000;
+                if (performance.audience > 20) {
+                    result += 10000 + 500 * (performance.audience - 20);
+                }
+                result += 300 * performance.audience;
+                break;
+            default:
+                throw new Error(`unknown type: ${play.type}`);
+        }
+        return result;
+    }
 }
 
 for (const invoice of invoices) {
