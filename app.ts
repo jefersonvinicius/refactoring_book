@@ -13,10 +13,7 @@ function statement(invoice: Invoice, plays: { [key: string]: Play }) {
     }).format;
 
     for (let perf of invoice.performances) {
-        volumeCredits += Math.max(perf.audience - 30, 0);
-
-        if ('comedy' === playFor(perf).type) volumeCredits += Math.floor(perf.audience / 5);
-
+        volumeCredits += volumeCreditsFor(perf);
         result += ` ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${perf.audience} seats)\n`;
         totalAmount += amountFor(perf);
     }
@@ -50,8 +47,23 @@ function statement(invoice: Invoice, plays: { [key: string]: Play }) {
     function playFor(performance: Performance) {
         return plays[performance.playID];
     }
+
+    function volumeCreditsFor(performance: Performance) {
+        let volumeCredits = Math.max(performance.audience - 30, 0);
+        if ('comedy' === playFor(performance).type) volumeCredits += Math.floor(performance.audience / 5);
+        return volumeCredits;
+    }
 }
+const EXPECTED = `Statement for BigCo
+ Hamlet: $650.00 (55 seats)
+ As You Lite It: $580.00 (35 seats)
+ Othello: $500.00 (40 seats)
+Amount owed is $1,730.00
+You earned 47 credits
+`;
 
 for (const invoice of invoices) {
-    console.log(statement(invoice, plays));
+    const result = statement(invoice, plays);
+    console.log(result);
+    console.log(result === EXPECTED ? 'OK' : "Error: result doesn't expected");
 }
