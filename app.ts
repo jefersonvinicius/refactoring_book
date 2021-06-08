@@ -4,17 +4,15 @@ import { Invoice, Performance, Play } from './types';
 
 function statement(invoice: Invoice, plays: { [key: string]: Play }) {
     let totalAmount = 0;
-    let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
 
     for (let perf of invoice.performances) {
-        volumeCredits += volumeCreditsFor(perf);
         result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
         totalAmount += amountFor(perf);
     }
 
     result += `Amount owed is ${usd(totalAmount)}\n`;
-    result += `You earned ${volumeCredits} credits\n`;
+    result += `You earned ${totalVolumeCredits()} credits\n`;
     return result;
 
     function amountFor(performance: Performance) {
@@ -55,6 +53,14 @@ function statement(invoice: Invoice, plays: { [key: string]: Play }) {
             currency: 'USD',
             minimumFractionDigits: 2,
         }).format(value / 100);
+    }
+
+    function totalVolumeCredits() {
+        let result = 0;
+        for (let perf of invoice.performances) {
+            result += volumeCreditsFor(perf);
+        }
+        return result;
     }
 }
 const EXPECTED = `Statement for BigCo
