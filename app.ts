@@ -11,6 +11,7 @@ type StatementData = {
 
 type PerformanceEnriched = Performance & {
     play: Play;
+    amount: number;
 };
 
 function statement(invoice: Invoice, plays: Plays) {
@@ -23,24 +24,13 @@ function statement(invoice: Invoice, plays: Plays) {
     function enrichPerformance(performance: Performance) {
         const result = Object.assign({}, performance) as PerformanceEnriched;
         result.play = playFor(performance);
+        result.amount = amountFor(result);
         return result;
     }
 
     function playFor(performance: Performance) {
         return plays[performance.playID];
     }
-}
-
-function renderPlainText(data: StatementData, plays: Plays) {
-    let result = `Statement for ${data.customer}\n`;
-
-    for (let perf of data.performances) {
-        result += ` ${perf.play.name}: ${usd(amountFor(perf))} (${perf.audience} seats)\n`;
-    }
-
-    result += `Amount owed is ${usd(totalAmount())}\n`;
-    result += `You earned ${totalVolumeCredits()} credits\n`;
-    return result;
 
     function amountFor(performance: PerformanceEnriched) {
         let result = 0;
@@ -63,6 +53,18 @@ function renderPlainText(data: StatementData, plays: Plays) {
         }
         return result;
     }
+}
+
+function renderPlainText(data: StatementData, plays: Plays) {
+    let result = `Statement for ${data.customer}\n`;
+
+    for (let perf of data.performances) {
+        result += ` ${perf.play.name}: ${usd(perf.amount)} (${perf.audience} seats)\n`;
+    }
+
+    result += `Amount owed is ${usd(totalAmount())}\n`;
+    result += `You earned ${totalVolumeCredits()} credits\n`;
+    return result;
 
     function volumeCreditsFor(performance: PerformanceEnriched) {
         let result = Math.max(performance.audience - 30, 0);
@@ -89,7 +91,7 @@ function renderPlainText(data: StatementData, plays: Plays) {
     function totalAmount() {
         let result = 0;
         for (let perf of data.performances) {
-            result += amountFor(perf);
+            result += perf.amount;
         }
         return result;
     }
