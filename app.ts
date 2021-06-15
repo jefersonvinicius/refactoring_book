@@ -7,24 +7,53 @@ type Plays = { [key: string]: Play };
 type StatementData = {
     customer: string;
     performances: PerformanceEnriched[];
+    totalAmount: number;
+    totalVolumeCredits: number;
 };
 
 type PerformanceEnriched = Performance & {
     play: Play;
     amount: number;
+    volumeCredits: number;
 };
 
 function statement(invoice: Invoice, plays: Plays) {
+    const enrichedPerformances = invoice.performances.map(enrichPerformance);
     const statementData: StatementData = {
         customer: invoice.customer,
-        performances: invoice.performances.map(enrichPerformance),
+        performances: enrichedPerformances,
+        totalAmount: totalAmount(enrichedPerformances),
+        totalVolumeCredits: totalVolumeCredits(enrichedPerformances),
     };
     return renderPlainText(statementData, plays);
+
+    function totalVolumeCredits(performances: PerformanceEnriched[]) {
+        let result = 0;
+        for (let perf of performances) {
+            result += perf.volumeCredits;
+        }
+        return result;
+    }
+
+    function totalAmount(performances: PerformanceEnriched[]) {
+        let result = 0;
+        for (let perf of performances) {
+            result += perf.amount;
+        }
+        return result;
+    }
 
     function enrichPerformance(performance: Performance) {
         const result = Object.assign({}, performance) as PerformanceEnriched;
         result.play = playFor(performance);
         result.amount = amountFor(result);
+        result.volumeCredits = volumeCreditsFor(result);
+        return result;
+    }
+
+    function volumeCreditsFor(performance: PerformanceEnriched) {
+        let result = Math.max(performance.audience - 30, 0);
+        if ('comedy' === performance.play.type) result += Math.floor(performance.audience / 5);
         return result;
     }
 
@@ -62,15 +91,9 @@ function renderPlainText(data: StatementData, plays: Plays) {
         result += ` ${perf.play.name}: ${usd(perf.amount)} (${perf.audience} seats)\n`;
     }
 
-    result += `Amount owed is ${usd(totalAmount())}\n`;
-    result += `You earned ${totalVolumeCredits()} credits\n`;
+    result += `Amount owed is ${usd(data.totalAmount)}\n`;
+    result += `You earned ${data.totalVolumeCredits} credits\n`;
     return result;
-
-    function volumeCreditsFor(performance: PerformanceEnriched) {
-        let result = Math.max(performance.audience - 30, 0);
-        if ('comedy' === performance.play.type) result += Math.floor(performance.audience / 5);
-        return result;
-    }
 
     function usd(value: number) {
         return new Intl.NumberFormat('en-US', {
@@ -78,22 +101,6 @@ function renderPlainText(data: StatementData, plays: Plays) {
             currency: 'USD',
             minimumFractionDigits: 2,
         }).format(value / 100);
-    }
-
-    function totalVolumeCredits() {
-        let result = 0;
-        for (let perf of data.performances) {
-            result += volumeCreditsFor(perf);
-        }
-        return result;
-    }
-
-    function totalAmount() {
-        let result = 0;
-        for (let perf of data.performances) {
-            result += perf.amount;
-        }
-        return result;
     }
 }
 const EXPECTED = `Statement for BigCo
