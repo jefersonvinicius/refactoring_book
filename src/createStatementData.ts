@@ -24,6 +24,28 @@ class PerformanceCalculator {
         this.performance = performance;
         this.play = play;
     }
+
+    get amount() {
+        let result = 0;
+        switch (this.play.type) {
+            case 'tragedy':
+                result = 40000;
+                if (this.performance.audience > 30) {
+                    result += 1000 * (this.performance.audience - 30);
+                }
+                break;
+            case 'comedy':
+                result = 30000;
+                if (this.performance.audience > 20) {
+                    result += 10000 + 500 * (this.performance.audience - 20);
+                }
+                result += 300 * this.performance.audience;
+                break;
+            default:
+                throw new Error(`unknown type: ${this.play.type}`);
+        }
+        return result;
+    }
 }
 
 export function createStatementData(invoice: Invoice, plays: Plays) {
@@ -48,7 +70,7 @@ function totalAmount(performances: PerformanceEnriched[]) {
 function enrichPerformance(performance: Performance) {
     const calculator = new PerformanceCalculator(performance, playFor(performance));
     const result = Object.assign({}, performance) as PerformanceEnriched;
-    result.play = playFor(performance);
+    result.play = calculator.play;
     result.amount = amountFor(result);
     result.volumeCredits = volumeCreditsFor(result);
     return result;
@@ -65,23 +87,5 @@ function playFor(performance: Performance) {
 }
 
 function amountFor(performance: PerformanceEnriched) {
-    let result = 0;
-    switch (performance.play.type) {
-        case 'tragedy':
-            result = 40000;
-            if (performance.audience > 30) {
-                result += 1000 * (performance.audience - 30);
-            }
-            break;
-        case 'comedy':
-            result = 30000;
-            if (performance.audience > 20) {
-                result += 10000 + 500 * (performance.audience - 20);
-            }
-            result += 300 * performance.audience;
-            break;
-        default:
-            throw new Error(`unknown type: ${performance.play.type}`);
-    }
-    return result;
+    return new PerformanceCalculator(performance, playFor(performance)).amount;
 }
