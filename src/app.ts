@@ -2,6 +2,7 @@ import plays from '../plays.json';
 import invoices from '../invoices.json';
 import { Invoice } from './types';
 import { createStatementData, Plays, StatementData } from './createStatementData';
+import fs from 'fs/promises';
 
 function usd(value: number) {
     return new Intl.NumberFormat('en-US', {
@@ -16,7 +17,9 @@ function statement(invoice: Invoice, plays: Plays) {
 }
 
 function htmlStatement(invoice: Invoice, plays: Plays) {
-    return renderHTML(createStatementData(invoice, plays));
+    const content = renderHTML(createStatementData(invoice, plays));
+    fs.writeFile('./html-statement.html', content);
+    return content;
 }
 
 function renderHTML(data: StatementData) {
@@ -51,13 +54,13 @@ Amount owed is $1,730.00
 You earned 47 credits
 `;
 
-// for (const invoice of invoices) {
-//     const result = statement(invoice, plays);
-//     console.log(result);
-//     console.log(result === EXPECTED ? 'OK' : "Error: result doesn't expected");
-// }
-
 for (const invoice of invoices) {
-    const result = htmlStatement(invoice, plays);
+    const result = statement(invoice, plays);
     console.log(result);
+    console.log(result === EXPECTED ? 'OK' : "Error: result doesn't expected");
 }
+
+// for (const invoice of invoices) {
+//     const result = htmlStatement(invoice, plays);
+//     console.log(result);
+// }

@@ -16,6 +16,16 @@ export type PerformanceEnriched = Performance & {
     volumeCredits: number;
 };
 
+class PerformanceCalculator {
+    performance: Performance;
+    play: Play;
+
+    constructor(performance: Performance, play: Play) {
+        this.performance = performance;
+        this.play = play;
+    }
+}
+
 export function createStatementData(invoice: Invoice, plays: Plays) {
     const enrichedPerformances = invoice.performances.map(enrichPerformance);
     const statementData: StatementData = {
@@ -36,6 +46,7 @@ function totalAmount(performances: PerformanceEnriched[]) {
 }
 
 function enrichPerformance(performance: Performance) {
+    const calculator = new PerformanceCalculator(performance, playFor(performance));
     const result = Object.assign({}, performance) as PerformanceEnriched;
     result.play = playFor(performance);
     result.amount = amountFor(result);
