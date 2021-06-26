@@ -1,1 +1,1 @@
-# This chapter introdoce many refactoring techniques with examples.
+# This chapter introduce many refactoring techniques with examples.
