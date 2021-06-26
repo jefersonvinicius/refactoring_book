@@ -1,0 +1,1 @@
+Just change the name of function with automated tools and change their parameters if necessary. It's approach is usefull when the function is used few times throught system.
