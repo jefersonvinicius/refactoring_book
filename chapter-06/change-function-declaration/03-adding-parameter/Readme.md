@@ -1,0 +1,1 @@
+This technique is useful to add parameter to function
