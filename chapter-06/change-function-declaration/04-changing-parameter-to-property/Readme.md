@@ -1,0 +1,1 @@
+Example little bit more complex using "Change funcion declaration"
