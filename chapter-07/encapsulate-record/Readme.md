@@ -1,0 +1,1 @@
+Encapsulate the simple objects in classes can useful for give more context to data instead of use them raw. Besides, when use classes you can create new getter based on previous fields
