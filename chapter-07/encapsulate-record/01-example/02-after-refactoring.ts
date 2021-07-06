@@ -1,11 +1,9 @@
 class Organization {
-    public _data: { name: string; country: string };
     private _name: string;
 
     private _country: string;
 
     constructor(data: any) {
-        this._data = data;
         this._name = data.name;
         this._country = data.country;
     }
