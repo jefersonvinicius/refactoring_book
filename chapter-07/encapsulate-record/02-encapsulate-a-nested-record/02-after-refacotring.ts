@@ -7,6 +7,10 @@ class CustomerData {
     setUsage(customerID: number, year: number, month: number, amount: number) {
         this._data[customerID].usages[year][month] = amount;
     }
+
+    usage(customerID: number, year: number, month: number) {
+        return this._data[customerID].usages[year][month];
+    }
 }
 
 // Data example
@@ -94,13 +98,12 @@ function setRawDataOfCustomers(arg: any) {
 // Update example
 const customerID = 38673;
 const year = 2016;
-const month = "2";
-getRawDataOfCustomers()[customerID].usages[year][month] = 100;
+const month = 2;
+getCustomerData().setUsage(customerID, year, month, 100);
 
 // Read example
 function compareUsage(customerID: number, laterYear: number, month: number) {
-    const later = getRawDataOfCustomers()[customerID].usages[laterYear][month];
-    const earlier =
-        getRawDataOfCustomers()[customerID].usages[laterYear - 1][month];
+    const later = getCustomerData().usage(customerID, year, month);
+    const earlier = getCustomerData().usage(customerID, laterYear - 1, month);
     return { laterAmount: later, change: later - earlier };
 }
