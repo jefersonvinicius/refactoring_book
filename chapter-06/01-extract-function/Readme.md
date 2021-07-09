@@ -1,0 +1,1 @@
+Extract Function is very simple refactoring technique, but really useful
