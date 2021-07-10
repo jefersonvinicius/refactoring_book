@@ -1,0 +1,1 @@
+Replace temporary variables for function is more readable and avoid code duplicated.
