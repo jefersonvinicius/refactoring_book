@@ -1,0 +1,1 @@
+When more than one subclass have a field or execute something in contructor, you could pull up  it to parent constructor and unify that field and/or action
