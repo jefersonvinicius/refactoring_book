@@ -1,0 +1,1 @@
+When more than one subclass have a method tha do same thing, you could it pull up to parent class and unify that method
