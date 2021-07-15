@@ -1,0 +1,1 @@
+When a function receive many parameters, or, more than one function use a same set of variables, you can change theses parameters by a object
