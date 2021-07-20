@@ -1,0 +1,1 @@
+Always a function receive as parameter a object have being unstructured, you can choose pass the a whole object. Only caution, because this can lead the high coupling
