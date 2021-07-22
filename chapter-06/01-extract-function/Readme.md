@@ -1,1 +1,1 @@
-Extract Function is very simple refactoring technique, but really useful
+Extract Function is very simple refactoring technique, but really useful. Always that you want give more meaning for your code you can use this technique, extracting comments and obscured part of code to new functions.
