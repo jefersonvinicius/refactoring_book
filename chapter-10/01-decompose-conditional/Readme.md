@@ -1,0 +1,1 @@
+When you have a conditional, you should use [Extract Function](https://github.com/jefersonvinicius/studying-book_refactoring/tree/master/chapter-06/01-extract-function) to give a meaning to conditional
