@@ -1,0 +1,1 @@
+When varios conditionals statements return the same result, you can group then to improve code legibility
