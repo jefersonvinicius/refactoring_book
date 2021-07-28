@@ -1,0 +1,1 @@
+When you have a lot conditionals nested you can use guard clauses to simplify legibility
