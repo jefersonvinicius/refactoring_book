@@ -1,4 +1,6 @@
-function rating(voyage, history) {
+import assert from "assert";
+
+function rating(voyage: Voyage, history: HistoryItem[]) {
     const vpf = voyageProfitFactor(voyage, history);
     const vr = voyageRisk(voyage);
     const chr = captainHistoryRisk(voyage, history);
@@ -6,7 +8,7 @@ function rating(voyage, history) {
     return "B";
 }
 
-function voyageRisk(voyage) {
+function voyageRisk(voyage: Voyage) {
     let result = 1;
     if (voyage.length > 4) result += 2;
     if (voyage.length > 8) result += voyage.length - 8;
@@ -14,7 +16,7 @@ function voyageRisk(voyage) {
     return Math.max(result, 0);
 }
 
-function captainHistoryRisk(voyage, history) {
+function captainHistoryRisk(voyage: Voyage, history: HistoryItem[]) {
     let result = 1;
     if (history.length < 5) result += 4;
     result += history.filter((v) => v.profit < 0).length;
@@ -22,11 +24,11 @@ function captainHistoryRisk(voyage, history) {
     return Math.max(result, 0);
 }
 
-function hasChina(history) {
+function hasChina(history: HistoryItem[]) {
     return history.some((v) => "china" === v.zone);
 }
 
-function voyageProfitFactor(voyage, history) {
+function voyageProfitFactor(voyage: Voyage, history: HistoryItem[]) {
     let result = 2;
     if (voyage.zone === "china") result += 1;
     if (voyage.zone === "east-indies") result += 1;
@@ -41,3 +43,24 @@ function voyageProfitFactor(voyage, history) {
     }
     return result;
 }
+
+type Voyage = {
+    zone: string;
+    length: number;
+};
+
+type HistoryItem = {
+    zone: string;
+    profit: number;
+};
+
+const voyage: Voyage = { zone: "west-indies", length: 10 };
+const _history: HistoryItem[] = [
+    { zone: "east-indies", profit: 5 },
+    { zone: "west-indies", profit: 15 },
+    { zone: "china", profit: -2 },
+    { zone: "west-africa", profit: 7 },
+];
+
+const myRating = rating(voyage, _history);
+assert.equal(myRating, "B", "Rating should be B");
