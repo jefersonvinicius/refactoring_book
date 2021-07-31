@@ -1,1 +1,1 @@
-When you have conditions that can be separated in base cases and variation cases the better approach is to create a class hierarchy
+When you have conditions that can be separated in base cases and variation cases, the better approach is to create a class hierarchy
