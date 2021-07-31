@@ -52,6 +52,7 @@ class Rating {
     }
 }
 
+// This class is variation of rating value
 class ExperiencedChinaRating extends Rating {
     get captainHistoryRisk() {
         const result = super.captainHistoryRisk - 2;

@@ -26,6 +26,7 @@ class Bird {
 }
 
 function createBird(bird) {
+    // Which case have changed to own class, and then, each subclass implements its logic
     switch (bird.type) {
         case "EuropeanSwallow":
             return new EuropeanSwallow(bird);
