@@ -1,0 +1,1 @@
+Tha main ideia about this technique is unify the calculations in another structure, avoiding code duplication. It's very useful when you just have show the data, that is, they not change.
