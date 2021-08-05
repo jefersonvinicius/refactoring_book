@@ -1,0 +1,1 @@
+When one loop do more than one thing, you should separate these things in distinct loop or extract to own function
