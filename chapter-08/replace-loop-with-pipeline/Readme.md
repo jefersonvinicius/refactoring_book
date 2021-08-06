@@ -1,0 +1,1 @@
+When you have a loop that proccess something and return another thing, you should replace it with pipeline
