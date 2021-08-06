@@ -1,0 +1,1 @@
+When a parameter function can be extracted from another parameter or class property, you should remove the parameter "duplicated" and leave the function extract it
