@@ -1,0 +1,1 @@
+When a function has a parameter as a flag, you should separate the differents conditionals of flag into differents functions
