@@ -1,0 +1,1 @@
+It's very useful encapsulate global variables and give copies of data they are used
