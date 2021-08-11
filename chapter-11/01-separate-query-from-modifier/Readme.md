@@ -1,0 +1,1 @@
+It's a good pratice separate function that return values and function that modify values. When a function do this two things, you should separate it
