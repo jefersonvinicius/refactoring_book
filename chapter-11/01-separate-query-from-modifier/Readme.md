@@ -1,1 +1,1 @@
-It's a good pratice separate function that return values and function that modify values. When a function do this two things, you should separate it
+It's a good pratice separate function that return values and function that modify values. When a function do this two things, you should separate it. In this way, you remove the side effects from query functions
