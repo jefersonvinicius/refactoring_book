@@ -1,0 +1,1 @@
+It's useful remove setters when the field not change after object creation, helping give imutability to it
