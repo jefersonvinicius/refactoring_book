@@ -1,0 +1,1 @@
+When a data is calculated by many differents places, you should unify it, and create a one source for this data
