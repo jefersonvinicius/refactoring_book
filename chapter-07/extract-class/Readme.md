@@ -1,0 +1,1 @@
+When a class increase your responsabilities, you should extract fields and methods that are of same context to another class
