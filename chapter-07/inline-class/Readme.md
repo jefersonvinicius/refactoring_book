@@ -1,0 +1,1 @@
+Sometimes make sense to destroy a poor class and inline it in another class, simplifying the class hierarchy
