@@ -1,0 +1,1 @@
+Always give the rigth place to functions and class, when realize the function is in wrong place, move it
