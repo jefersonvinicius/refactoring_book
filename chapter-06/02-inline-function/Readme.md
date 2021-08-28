@@ -1,0 +1,1 @@
+When a body function is clearly as much as the name, you should inline it
