@@ -1,0 +1,1 @@
+Instead of deal with primitives is better replace then with object, so, you'll can add new behaviors and avoid code duplication
