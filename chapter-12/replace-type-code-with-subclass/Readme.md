@@ -1,0 +1,1 @@
+Always you can deal with differents type of a entity, prefers subclass than simple type codes
