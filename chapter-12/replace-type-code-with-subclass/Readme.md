@@ -1,1 +1,1 @@
-Always you can deal with differents type of a entity, prefers subclass than simple type codes
+Always you going to deal with differents types of a entity, prefer subclass than simple type codes
