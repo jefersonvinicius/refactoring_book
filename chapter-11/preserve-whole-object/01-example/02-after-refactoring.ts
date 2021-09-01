@@ -6,11 +6,8 @@ class HeatingPlan {
     }
 
     withinRange(numberRange: { low: number; high: number }) {
-        // Now, this method receive a object
-        return (
-            numberRange.low >= this.temperatureRange.low &&
-            numberRange.high <= this.temperatureRange.high
-        );
+        // Now, this method receive an object
+        return numberRange.low >= this.temperatureRange.low && numberRange.high <= this.temperatureRange.high;
     }
 }
 

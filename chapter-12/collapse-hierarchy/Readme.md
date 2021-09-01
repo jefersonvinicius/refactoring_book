@@ -1,0 +1,1 @@
+Sometimes, maintain a subclass no make sense when it very simple. So, the better approach is Collapse it in parent class, pulling up methods and fields.
