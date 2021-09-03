@@ -85,6 +85,6 @@ const weeksDelinquent = aCustomer4.paymentHistory.weeksDeliquentInLastYear;
 
 // Extra client with different behavior
 // In this case, the client want use different string ("unknown occupant" instead of "occupant")
-// So, you have to use a conditional again
+// So, you have to use a conditional again rather than "name" property used by Client 1
 const aCustomer5 = new Site().customer;
 const _name = aCustomer5.isUnknown ? "unknown occupant" : aCustomer5.name;
