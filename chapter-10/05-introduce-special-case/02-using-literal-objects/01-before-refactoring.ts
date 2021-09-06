@@ -1,3 +1,5 @@
+// In this example, the clients only read data structures
+
 class Site {
     private _customer;
 
@@ -44,10 +46,5 @@ const registry = {
 const plan = aCustomer === "unknown" ? registry.billingPlan.basic : aCustomer.billingPlan;
 
 // Client 3
-const aCustomer2 = new Site().customer;
-const newPlan = 50;
-if (aCustomer2 !== "unknown") aCustomer2.billingPlan = newPlan;
-
-// Client 4
 const aCustomer3 = new Site().customer;
 const weeksDelinquent = aCustomer3 === "unknown" ? 0 : aCustomer3.paymentHistory.weeksDelinquentInLastYear;
