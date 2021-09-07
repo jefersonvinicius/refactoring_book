@@ -1,0 +1,1 @@
+When a condition is used in many parts of system to get correct data, it's usefull create a Special Case to it using a Class or only plain objects
