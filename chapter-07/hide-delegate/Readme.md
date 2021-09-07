@@ -1,0 +1,1 @@
+When the clients know how an class field work, you can create a simple method and delegate specifics fields this object
