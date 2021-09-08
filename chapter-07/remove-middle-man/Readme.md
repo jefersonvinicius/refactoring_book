@@ -1,0 +1,1 @@
+When many method are only delegates to another object, you should create a get method to access object directly
