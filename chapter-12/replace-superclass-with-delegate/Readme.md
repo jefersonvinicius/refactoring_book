@@ -1,0 +1,1 @@
+Sometimes, a inheriment no make sense, is better reference the parent object inner of class, and create delegates methods 
