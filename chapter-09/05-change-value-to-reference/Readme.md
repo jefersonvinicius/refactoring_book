@@ -1,0 +1,1 @@
+Sometimes, it's easier work with a reference to instance than a value. When many values that makes reference to same object are created you have to update all values, but, when working with reference you have the sure that all operations happen in same instance
