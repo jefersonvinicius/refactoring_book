@@ -1,5 +1,5 @@
 class Booking {
-    private _premiumDelegate: PremiumBookingDelegate;
+    private _premiumDelegate: PremiumBookingDelegate; // Using delegate
     public _show;
     protected _date;
 
@@ -34,23 +34,6 @@ class Booking {
     }
 }
 
-class PremiumBooking extends Booking {
-    private _extras;
-
-    constructor(show, date, extras) {
-        super(show, date);
-        this._extras = extras;
-    }
-
-    override get basePrice() {
-        return Math.round(super.basePrice + this._extras.premiumFee);
-    }
-
-    get hasDinner() {
-        return this._show.hasOwnProperty("dinner") && !this.isPeakDay;
-    }
-}
-
 class PremiumBookingDelegate {
     private _host: Booking;
     private _extras;
@@ -78,7 +61,7 @@ function createBooking(show, date) {
 }
 
 function createPremiumBooking(show, date, extras) {
-    const result = new PremiumBooking(show, date, extras);
+    const result = new Booking(show, date);
     result._bePremium(extras);
     return result;
 }
