@@ -1,0 +1,1 @@
+Some cases, you composes the class instead of use inherit is more simple e can be more flexible
