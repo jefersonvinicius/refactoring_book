@@ -1,0 +1,1 @@
+When two or more classes has some behaviors equals, is useful extract theses behaviors to superclass
