@@ -1,0 +1,1 @@
+Assertion can be util to help the programmer communicate what state of system should has in that moment.
