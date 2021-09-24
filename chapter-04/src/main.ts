@@ -1,4 +1,4 @@
-function sampleProvinceData() {
+export function sampleProvinceData() {
     return {
         name: "Asia",
         producers: [
@@ -11,7 +11,7 @@ function sampleProvinceData() {
     };
 }
 
-class Producer {
+export class Producer {
     private _province: Province;
 
     private _name: string;
@@ -49,7 +49,7 @@ class Producer {
     }
 }
 
-class Province {
+export class Province {
     private _name: string;
     private _producers: Producer[];
     private _totalProduction: number;
@@ -71,7 +71,7 @@ class Province {
     }
 
     get shortfall() {
-        return this._demand - this.totalProduction;
+        return this._demand - this.totalProduction * 2;
     }
 
     get profit() {
