@@ -71,7 +71,7 @@ export class Province {
     }
 
     get shortfall() {
-        return this._demand - this.totalProduction * 2;
+        return this._demand - this.totalProduction;
     }
 
     get profit() {
