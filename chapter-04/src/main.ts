@@ -115,12 +115,12 @@ export class Province {
         this._totalProduction = arg;
     }
 
-    get demand() {
+    get demand(): number {
         return this._demand;
     }
 
-    set demand(arg) {
-        this._demand = arg;
+    set demand(arg: number | string) {
+        this._demand = parseInt(String(arg));
     }
 
     get price(): number {
