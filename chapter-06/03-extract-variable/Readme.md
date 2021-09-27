@@ -1,0 +1,1 @@
+When some a statement is very complex, is useful separate the logic in differents variables to give them more meaning.
