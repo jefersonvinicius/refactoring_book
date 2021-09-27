@@ -1,0 +1,1 @@
+Some local variables not gives information more than the function/method itself, so, inline the variable.
