@@ -1,0 +1,1 @@
+When we found a way better of resolve some problem or we start use some lib, sometimes will be necessary substitute an algorithm
