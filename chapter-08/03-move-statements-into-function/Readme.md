@@ -1,0 +1,1 @@
+When some code is called next the same function, is useful move it to inner of function
