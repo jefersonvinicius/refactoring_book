@@ -1,0 +1,1 @@
+Some code can be replaced by function, avoiding duplication
