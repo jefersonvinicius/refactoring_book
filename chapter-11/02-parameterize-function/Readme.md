@@ -1,0 +1,1 @@
+When some functions do similar thing only changing some values, you should unify them and parameterize the new function.
