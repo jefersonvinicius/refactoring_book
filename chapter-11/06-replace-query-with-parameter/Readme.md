@@ -1,0 +1,1 @@
+Sometimes, internals references of function and methods can be replaced with parameter. That decrease the coupling but make client more harder to use it
