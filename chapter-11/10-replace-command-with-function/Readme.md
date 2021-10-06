@@ -1,0 +1,1 @@
+When the command is very simple, it's usefull replace it with a simple function
