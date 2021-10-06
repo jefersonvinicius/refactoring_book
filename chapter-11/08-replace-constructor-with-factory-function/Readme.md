@@ -1,0 +1,1 @@
+To use factories functions gives more possibilities than to use directly the constructor
