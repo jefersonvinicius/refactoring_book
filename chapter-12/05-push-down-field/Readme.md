@@ -1,0 +1,1 @@
+If a field present in class is used only a subclass, push down it
