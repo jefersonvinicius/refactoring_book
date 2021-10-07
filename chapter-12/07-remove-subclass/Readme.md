@@ -1,0 +1,1 @@
+When the subclass do really simple things, it is better remove them and move the behavior to super class
