@@ -9,7 +9,7 @@ class Party {
         return this._name;
     }
 
-    get monthlyCost() {
+    get monthlyCost(): number {
         throw new Error("Should be implemented by subclasses");
     }
 
